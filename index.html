@@ -1,6 +1,22 @@
 <html>
 <head><title>Index Page</title></head>
+    <script type="module">
+import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
+</script>
 <body>
 This is the index HTML page.
+  <script>
+    const octokit = new Octokit();
+
+    // Compare: https://docs.github.com/en/rest/reference/repos/#list-organization-repositories
+    octokit.rest.repos
+      .listForOrg({
+          org: "octokit",
+          type: "public",
+      })
+      .then(({ data }) => {
+        data[0]
+      });
+  </script>
 </body>
 </html>
